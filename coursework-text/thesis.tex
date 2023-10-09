@@ -17,6 +17,35 @@
 % \usepackage{float}
 \usepackage{listings}
 \usepackage{algorithm}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
 \usepackage[noend]{algpseudocode}
 \newcommand{\head}[1]{\textnormal{\textbf{#1}}}
 
@@ -56,6 +85,8 @@
 \graphicspath{{pic/}, {pseudocode/}}
 \titlespacing{\paragraph}{1.25cm}{1.5em plus .1ex minus .2ex}{1em}
 \captionsetup[table]{skip=-0.4em}
+\captionsetup[lstlisting]{font={small}}
+
 \begin{document} % ------------------------------------------------------------
 \sloppy
 

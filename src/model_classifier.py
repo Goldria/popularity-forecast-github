@@ -2,11 +2,14 @@ import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier, AdaBoostClassifier
 from sklearn.metrics import (confusion_matrix, f1_score, precision_score,
                              recall_score)
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.naive_bayes import GaussianNB, MultinomialNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 
 
 class GitHubClassifier:
@@ -39,6 +42,27 @@ class GitHubClassifier:
     def train_gradient_boosting(self):
         self.classifier = GradientBoostingClassifier(
             n_estimators=100, learning_rate=0.2, random_state=42)
+        self.classifier.fit(self.X_train, self.y_train)
+
+    def train_gaussian_naive_bayes(self):
+        self.classifier = GaussianNB()
+        self.classifier.fit(self.X_train, self.y_train)
+
+    # ---
+    def train_multinomial_naive_bayes(self):
+        self.classifier = MultinomialNB()
+        self.classifier.fit(self.X_train, self.y_train)
+
+    def train_logistic_regression(self):
+        self.classifier = LogisticRegression(max_iter=5000)
+        self.classifier.fit(self.X_train, self.y_train)
+
+    def train_adaboost(self):
+        self.classifier = AdaBoostClassifier(n_estimators=10, random_state=42)
+        self.classifier.fit(self.X_train, self.y_train)
+
+    def train_svm(self):
+        self.classifier = SVC(kernel='linear', C=1.0)
         self.classifier.fit(self.X_train, self.y_train)
 
     def count_f1(self):

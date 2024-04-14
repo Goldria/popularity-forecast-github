@@ -1,16 +1,11 @@
-from model_classifier import GitHubClassifier
+from GithubRegressor import GithubRegressor
 
 if __name__ == '__main__':
-    new_data = [[1, 1, 1, 1, 1, 1]]
-    filename = '../training_data/data_github.csv'
-    classifier = GitHubClassifier(filename)
+    filename = '../models_regression/random_forest.pkl'
+    classifier = GithubRegressor('../training_data/data_github.csv')
+    classifier.train_random_forest()
+    classifier.save_model(filename)
 
-    classifier.train_svm()
-
-    print("Classifier Metrics:")
-    print(f'Precision: {classifier.count_precision()}')
-    print(f'Recall: {classifier.count_recall()}')
-    print(f'F1-score: {classifier.count_f1()}')
-    class_rf = classifier.predict_class(new_data)
-    print(
-        f'Predicted class: {class_rf}')
+    new_data = [[1, 1, 1, 1, 1]]
+    stars = classifier.predict_stars(new_data)
+    print(f'Predicted stars: {stars}')

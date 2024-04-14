@@ -12,7 +12,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.tree import DecisionTreeClassifier
 
 
-class GitHubClassifier:
+class GithubClassifier:
     """
     GitHubClassifier - классификатор для прогнозирования популярности репозиториев GitHub.
 
@@ -69,8 +69,6 @@ class GitHubClassifier:
         """
         self.file_path = file_path
         self.model_loaded = False
-        self.classifier = None
-        self.scaler = None
         if file_path.endswith('.pkl'):
             self.load_model()
             self.model_loaded = True

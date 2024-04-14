@@ -47,8 +47,6 @@ class GithubRegressor:
         """
         self.file_path = file_path
         self.model_loaded = False
-        self.regressor = None
-        self.scaler = None
         if file_path.endswith('.pkl'):
             self.load_model()
             self.model_loaded = True

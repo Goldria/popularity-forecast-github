@@ -17,8 +17,8 @@
       <div class="data-model">
         <h1 class="form__title">Класс популярности проекта</h1>
         <p>
-          По вашим данным ранг популярности проекта: {{ class_popularity[0] }},
-          где
+          По вашим данным ранг популярности проекта:
+          <i>{{ class_popularity }}</i>, где
         </p>
         1 - мало популярен <br />
         10 - очень популярен <br /><br />
@@ -27,12 +27,12 @@
 
         <div class="model-data">
           <p>Название: '{{ repo_name }}'</p>
-          <p>{{ model_data[0] }} forks</p>
-          <p>{{ model_data[1] }} stars</p>
-          <p>{{ model_data[2] }} issues</p>
-          <p>{{ model_data[3] }} commits</p>
-          <p>{{ model_data[4] }} pull-requests</p>
-          <p>{{ model_data[5] }} contributors</p>
+          <p>{{ forks }} forks</p>
+          <p>{{ stars }} stars</p>
+          <p>{{ issues }} issues</p>
+          <p>{{ commits }} commits</p>
+          <p>{{ requests }} pull-requests</p>
+          <p>{{ contributors }} contributors</p>
         </div>
       </div>
     </div>

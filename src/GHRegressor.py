@@ -48,7 +48,7 @@ class GHRegressor(IGHModel):
         self.file_path = file_path
         data = pd.read_csv(file_path)
         self.X = data[['forks', 'issues', 'commits',
-                       'pull_requests', 'distributors']]
+                       'pull_requests', 'contributors']]
         self.y = data['stars']
         super().train_model(test_size, random_state)
 

@@ -17,7 +17,11 @@
     <div class="center-align">
       <div class="data-model">
         <h1 class="form__title">Популярность проекта</h1>
-        <form action="/result" method="post" class="data-model__form">
+        <form
+          action="{{ url_for('process') }}"
+          method="post"
+          class="data-model__form"
+        >
           <br />
           <label for="repo-name">Название репозитория:</label>
           <input
@@ -91,6 +95,11 @@
               Градиентный бустинг
             </option>
             <option value="random-forest">Случайный лес</option>
+            <option value="decision-tree">Деревья решений</option>
+            <option value="adaboost">AdaBoost</option>
+            <option value="naive-bayes">
+              Наивный байесовский классификатор
+            </option>
           </select>
           <br /><br />
           <button class="get-data__button" type="submit">

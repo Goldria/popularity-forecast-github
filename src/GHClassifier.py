@@ -72,7 +72,7 @@ class GHClassifier(IGHModel):
                 indicating the assigned popularity class for each repository.
         """
         metrics = ['forks', 'commits', 'issues', 'commits',
-                   'pull_requests', 'distributors']
+                   'pull_requests', 'contributors']
         total = data[metrics].sum(axis=1)
         quantiles = total.quantile([i/10 for i in range(11)])
 

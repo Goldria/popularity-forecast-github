@@ -8,13 +8,47 @@ from selenium.webdriver.common.keys import Keys
 
 
 class HTMLParser:
+    """
+    HTMLParser - class to parse HTML data from a specified URL using Selenium WebDriver and BeautifulSoup, 
+    and fetch data from an HTML table.
+
+    Attributes:
+        url (str): the URL from which data is fetched.
+        offset (int): the offset value used for pagination.
+        step (int): the step value used for pagination.
+        driver (object): an instance of the Selenium WebDriver for Chrome.
+
+    Methods:
+        fetch_data(limit):
+            Fetches data from the HTML table on the webpage.
+
+        get_query():
+            Generates a SQL query to retrieve data from the database.
+
+
+        save_to_csv(filename, limit):
+            Fetches data and saves it to a CSV file.
+    """
+
     def __init__(self):
+        """
+        Initializes the HTMLParser object.
+        """
         self.url = "https://play.clickhouse.com/play?user=play"
         self.offset = 0
         self.step = 1_000
         self.driver = webdriver.Chrome()
 
     def fetch_data(self, limit):
+        """
+        Fetches data from the HTML table on the webpage.
+
+        Args:
+            limit (int): The maximum number of rows to fetch.
+
+        Returns:
+            List of lists containing the fetched data.
+        """
         data = []
 
         while True:
@@ -47,6 +81,12 @@ class HTMLParser:
         return data[:limit]
 
     def get_query(self):
+        """
+        Generates a SQL query to retrieve data from the database.
+
+        Returns:
+            SQL query string.
+        """
         query = f"""
                 SELECT
                     main.repo_name,
@@ -95,13 +135,17 @@ class HTMLParser:
         return query
 
     def save_to_csv(self, filename, limit):
+        """
+        Fetches data and saves it to a CSV file.
+
+        Args:
+            filename (str): The name of the CSV file to save the data to.
+            limit (int): The maximum number of rows to fetch and save.
+
+        Returns:
+            None.
+        """
         self.parsed_data = self.fetch_data(limit)
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(self.parsed_data)
-
-
-filename = '../training_data/data_github.csv'
-
-html_parser = HTMLParser()
-parsed_data = html_parser.save_to_csv(filename, 300_000)

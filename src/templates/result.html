@@ -15,12 +15,14 @@
   <body>
     <div class="center-align">
       <div class="data-model">
+        {% if source == 'classifier' %}
+
         <h1 class="form__title">Класс популярности проекта</h1>
         <p>
           По вашим данным ранг популярности проекта:
-          <i>{{ class_popularity }}</i>, где
+          <i>{{ popularity }}</i>, где
         </p>
-        1 - мало популярен <br />
+        0 - мало популярен <br />
         10 - очень популярен <br /><br />
 
         <div class="model-name">Выбранная модель: {{ model_name }}</div>
@@ -34,6 +36,34 @@
           <p>{{ requests }} pull-requests</p>
           <p>{{ contributors }} contributors</p>
         </div>
+
+        {% elif source == 'regressor' %}
+
+        <h1 class="form__title">Количество звезд проекта</h1>
+        <p>
+          По вашим данным количество звезд, которые может получить ваш проект:
+          <i>{{ popularity }}</i>.
+        </p>
+        <br />
+
+        <div class="model-name">Выбранная модель: {{ model_name }}</div>
+
+        <div class="model-data">
+          <p>Название: '{{ repo_name }}'</p>
+          <p>{{ forks }} forks</p>
+          <p>{{ issues }} issues</p>
+          <p>{{ commits }} commits</p>
+          <p>{{ requests }} pull-requests</p>
+          <p>{{ contributors }} contributors</p>
+        </div>
+
+        {% else %}
+
+        <h1 class="form__title">Что-то пошло не так.</h1>
+        <p>Попробуйте заново открыть эту страницу, пожалуйста.</p>
+        <img src="../static/cat.jpg" class="form__image" alt="cat" />
+
+        {% endif %}
       </div>
     </div>
   </body>

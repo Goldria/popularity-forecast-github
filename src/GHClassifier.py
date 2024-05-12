@@ -98,7 +98,7 @@ class GHClassifier(IGHModel):
         new_data_scaled = self.scaler.transform(new_data)
         return self.classifier.predict(new_data_scaled)[0]
 
-    def train_random_forest(self, n_estimators, random_state):
+    def train_random_forest(self, n_estimators, random_state=42):
         """
         Trains the Random Forest classifier.
 
@@ -110,7 +110,7 @@ class GHClassifier(IGHModel):
             n_estimators=n_estimators, random_state=random_state)
         self.classifier.fit(self.X_train, self.y_train)
 
-    def train_gradient_boosting(self, n_estimators, random_state, learning_rate):
+    def train_gradient_boosting(self, n_estimators, random_state=42, learning_rate=1):
         """
         Trains the Gradient Boosting classifier.
 
@@ -123,7 +123,7 @@ class GHClassifier(IGHModel):
             n_estimators=n_estimators, learning_rate=learning_rate, random_state=random_state)
         self.classifier.fit(self.X_train, self.y_train)
 
-    def train_decision_tree(self, random_state):
+    def train_decision_tree(self, random_state=42):
         """
         Trains the Decision Tree classifier.
 
@@ -133,7 +133,7 @@ class GHClassifier(IGHModel):
         self.classifier = DecisionTreeClassifier(random_state=random_state)
         self.classifier.fit(self.X_train, self.y_train)
 
-    def train_adaboost(self, n_estimators, random_state):
+    def train_adaboost(self, n_estimators, random_state=42):
         """
         Trains the AdaBoost classifier.
 

@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Популярность GitHub проекта</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
       type="text/css"
       href="{{ url_for('static', filename='style.css')}}"
       rel="stylesheet"
     />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -17,89 +17,24 @@
     <div class="center-align">
       <div class="data-model">
         <h1 class="form__title">Популярность проекта</h1>
+        <div class="model__text">
+          В этом проекте реализовано обучение модели для определения класса
+          популярности проекта на GitHub. <br /><br />
+          Если требуется определить ранг популярности вашего проекта по всем
+          параметрам репозитория, выберите "Модель классификации". <br /><br />
+          Если хотите определить возможное количество звезд вашего репозитория
+          по другим параметрам, выберите "Модель регрессии".
+        </div>
         <form
-          action="{{ url_for('process') }}"
+          action="{{ url_for('redirect_page') }}"
           method="post"
           class="data-model__form"
         >
-          <br />
-          <label for="repo-name">Название репозитория:</label>
-          <input
-            type="text"
-            id="repo-name"
-            name="repo-name"
-            required
-          /><br /><br />
+          <label for="model-option">Выберите тип модели:</label>
 
-          <label for="forks"
-            >Далее введите количество следующих параметров:</label
-          ><br /><br />
-          <label for="forks">форков (forks):</label>
-          <input
-            type="text"
-            id="forks"
-            name="forks"
-            onkeypress="return isNumber(event)"
-            oninput="sanitizeInput(this)"
-          /><br /><br />
-
-          <label for="stars">звезд (stars):</label>
-          <input
-            type="text"
-            id="stars"
-            name="stars"
-            onkeypress="return isNumber(event)"
-            oninput="sanitizeInput(this)"
-          /><br /><br />
-
-          <label for="issues">проблем (issues):</label>
-          <input
-            type="text"
-            id="issues"
-            name="issues"
-            onkeypress="return isNumber(event)"
-            oninput="sanitizeInput(this)"
-          /><br /><br />
-
-          <label for="commits">коммитов (commits):</label>
-          <input
-            type="text"
-            id="commits"
-            name="commits"
-            onkeypress="return isNumber(event)"
-            oninput="sanitizeInput(this)"
-          /><br /><br />
-
-          <label for="pull-requests">пулл-реквестов (pull-requests):</label>
-          <input
-            type="text"
-            id="pull-requests"
-            name="pull-requests"
-            onkeypress="return isNumber(event)"
-            oninput="sanitizeInput(this)"
-          /><br /><br />
-
-          <label for="contributors">участников (contributors):</label>
-          <input
-            type="text"
-            id="contributors"
-            name="contributors"
-            onkeypress="return isNumber(event)"
-            oninput="sanitizeInput(this)"
-          /><br /><br />
-
-          <label for="model-choice">Выберите модель:</label>
-
-          <select name="model-choice" class="choice-model__select">
-            <option value="gradient-boosting" selected>
-              Градиентный бустинг
-            </option>
-            <option value="random-forest">Случайный лес</option>
-            <option value="decision-tree">Деревья решений</option>
-            <option value="adaboost">AdaBoost</option>
-            <option value="naive-bayes">
-              Наивный байесовский классификатор
-            </option>
+          <select name="model-option" class="choice-model__select">
+            <option value="classification">Модель классификации</option>
+            <option value="regression">Модель регрессии</option>
           </select>
           <br /><br />
           <button class="get-data__button" type="submit">
@@ -108,18 +43,5 @@
         </form>
       </div>
     </div>
-    <script>
-      function isNumber(event) {
-        const charCode = event.which ? event.which : event.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-          return false;
-        }
-        return true;
-      }
-
-      function sanitizeInput(input) {
-        input.value = input.value.replace(/[^\d]/g, "");
-      }
-    </script>
   </body>
 </html>

@@ -52,7 +52,7 @@ class GHRegressor(IGHModel):
         self.y = data['stars']
         super().train_model(test_size, random_state)
 
-    def train_random_forest(self, n_estimators, random_state):
+    def train_random_forest(self, n_estimators, random_state=42):
         """
         Trains the Random Forest model.
 
@@ -64,7 +64,7 @@ class GHRegressor(IGHModel):
             n_estimators=n_estimators, random_state=random_state)
         self.regressor.fit(self.X_train, self.y_train)
 
-    def train_gradient_boosting(self, n_estimators, random_state, learning_rate):
+    def train_gradient_boosting(self, n_estimators, random_state=42, learning_rate=0.1):
         """
         Trains the Gradient Boosting model.
 
@@ -77,7 +77,7 @@ class GHRegressor(IGHModel):
             n_estimators=n_estimators, learning_rate=learning_rate, random_state=random_state)
         self.regressor.fit(self.X_train, self.y_train)
 
-    def train_decision_tree_regression(self, random_state):
+    def train_decision_tree_regression(self, random_state=42):
         """
         Trains the Decision Tree regression model.
 

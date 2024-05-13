@@ -24,6 +24,10 @@
 \fxsetup{status=draft} % <====== add this line
 \usepackage{float}%"Плавающие" картинки
 
+\usepackage{totcount} % Счетчики объектов (chapter, figure и~др.)
+\usepackage{russianplural}
+
+
 \usepackage{wrapfig}%Обтекание фигур (таблиц, картинок и прочего)
 \graphicspath{{noiseimages/}}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -108,7 +112,6 @@
 %}
 
 \input{intro.tex}
-\input{rewiev.tex}
 \input{background.tex}
 \input{design.tex}
 \input{realization.tex}

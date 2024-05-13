@@ -38,9 +38,9 @@
 \usepackage{fancyvrb} % для вывода кода
 \usepackage{longtable}
 \usepackage{enumitem}  % кастомизация списков (чёртов topsep!)
-
+\usepackage{fancybox,fancyhdr}
 \usepackage{graphicx}
-
+\usepackage{tabularx}
 \usepackage{subfig}
 \captionsetup[subfigure]{labelformat=empty}
 

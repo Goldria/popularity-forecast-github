@@ -71,3 +71,13 @@ body {
   color: black;
   border: 1px solid #5c5c5c;
 }
+
+.data-model a {
+  color: inherit;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+}

@@ -32,33 +32,42 @@ def regressor():
 
 @app.route('/result')
 def result():
-    model = request.args.get('model')
-    popularity = request.args.get('popularity')
+    try:
+        args = {
+            'model_name': request.args.get('model'),
+            'popularity': request.args.get('popularity'),
+            'repo_name': request.args.get('repo'),
+            'forks': request.args.get('forks'),
+            'stars': request.args.get('stars'),
+            'issues': request.args.get('issues'),
+            'commits': request.args.get('commits'),
+            'requests': request.args.get('requests'),
+            'contributors': request.args.get('contributors'),
+            'source': request.args.get('source')
+        }
+        missing_args = [arg for arg in args if args[arg] is None]
+        if missing_args:
+            raise Exception('Не указан параметр')
 
-    repo = request.args.get('repo')
-    forks = request.args.get('forks')
-    stars = request.args.get('stars')
-    issues = request.args.get('issues')
-    commits = request.args.get('commits')
-    requests = request.args.get('requests')
-    contributors = request.args.get('contributors')
-    source = request.args.get('source')
-    return render_template('result.html', popularity=popularity, repo=repo, forks=forks, stars=stars, issues=issues,
-                           commits=commits, requests=requests, contributors=contributors, repo_name=repo, model_name=model, source=source)
+        return render_template('result.html', **args)
+
+    except:
+        return render_template('404.html')
 
 
 @app.route('/process', methods=['POST'])
 def process():
-    if request.method == 'POST':
-        source = request.form['source']
-        repo = request.form['repo-name']
-        model = request.form['model-choice']
-        forks = int(request.form['forks'])
-        issues = int(request.form['issues'])
-        commits = int(request.form['commits'])
-        requests = int(request.form['pull-requests'])
-        contributors = int(request.form['contributors'])
-        filename = '../training_data/data_github.csv'
+    try:
+        if request.method == 'POST':
+            source = request.form['source']
+            repo = request.form['repo-name']
+            model = request.form['model-choice']
+            forks = int(request.form['forks'])
+            issues = int(request.form['issues'])
+            commits = int(request.form['commits'])
+            requests = int(request.form['pull-requests'])
+            contributors = int(request.form['contributors'])
+            filename = '../training_data/data_github.csv'
 
         if source == 'classifier':
             stars = int(request.form['stars'])
@@ -89,6 +98,18 @@ def process():
 
         return redirect(url_for('result', popularity=popularity, repo=repo, forks=forks, stars=request.form.get('stars', 0), issues=issues,
                                 commits=commits, requests=requests, contributors=contributors, repo_name=repo, model=model_name, source=source))
+    except:
+        return render_template('404.html')
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    return render_template('404.html', error=e), 500
 
 
 if __name__ == '__main__':

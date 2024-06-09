@@ -13,7 +13,6 @@
 cd popularity-github/
 virtualenv env
 source env/bin/activate
-
 ```
 
 После этого необходимо установить требуемые зависимости:

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Популярность GitHub проекта</title>
+    <link
+      type="text/css"
+      href="{{ url_for('static', filename='style.css')}}"
+      rel="stylesheet"
+    />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="center-align">
+      <div class="data-model">
+        <h1 class="form__title">Популярность проекта</h1>
+        <div class="model__text">
+          В этом проекте реализовано обучение модели для определения класса
+          популярности проекта на GitHub. <br /><br />
+          Если требуется определить ранг популярности вашего проекта по всем
+          параметрам репозитория, выберите "Модель классификации". <br /><br />
+          Если хотите определить возможное количество звезд вашего репозитория
+          по другим параметрам, выберите "Модель регрессии".
+        </div>
+        <form
+          action="{{ url_for('redirect_page') }}"
+          method="post"
+          class="data-model__form"
+        >
+          <label for="model-option">Выберите тип модели:</label>
+
+          <select name="model-option" class="choice-model__select">
+            <option value="classification">Модель классификации</option>
+            <option value="regression">Модель регрессии</option>
+          </select>
+          <br /><br />
+          <button class="get-data__button" type="submit">
+            <b>Узнать класс</b>
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Популярность GitHub проекта</title>
+    <link
+      type="text/css"
+      href="{{ url_for('static', filename='style.css')}}"
+      rel="stylesheet"
+    />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="center-align">
+      <div class="data-model">
+        <h1 class="form__title">Класс популярности проекта</h1>
+        <form
+          action="{{ url_for('process') }}"
+          method="post"
+          class="data-model__form"
+        >
+          <br />
+          <input type="hidden" name="source" value="classifier" />
+          <label for="repo-name">Название репозитория:</label>
+          <input
+            type="text"
+            id="repo-name"
+            name="repo-name"
+            required
+          /><br /><br />
+
+          <label for="forks"
+            >Далее введите количество следующих параметров:</label
+          ><br /><br />
+          <label for="forks">форков (forks):</label>
+          <input
+            type="text"
+            id="forks"
+            name="forks"
+            onkeypress="return isNumber(event)"
+            oninput="sanitizeInput(this)"
+            required
+          /><br /><br />
+
+          <label for="stars">звезд (stars):</label>
+          <input
+            type="text"
+            id="stars"
+            name="stars"
+            onkeypress="return isNumber(event)"
+            oninput="sanitizeInput(this)"
+            required
+          /><br /><br />
+
+          <label for="issues">проблем (issues):</label>
+          <input
+            type="text"
+            id="issues"
+            name="issues"
+            onkeypress="return isNumber(event)"
+            oninput="sanitizeInput(this)"
+            required
+          /><br /><br />
+
+          <label for="commits">коммитов (commits):</label>
+          <input
+            type="text"
+            id="commits"
+            name="commits"
+            onkeypress="return isNumber(event)"
+            oninput="sanitizeInput(this)"
+            required
+          /><br /><br />
+
+          <label for="pull-requests">пулл-реквестов (pull-requests):</label>
+          <input
+            type="text"
+            id="pull-requests"
+            name="pull-requests"
+            onkeypress="return isNumber(event)"
+            oninput="sanitizeInput(this)"
+            required
+          /><br /><br />
+
+          <label for="contributors">участников (contributors):</label>
+          <input
+            type="text"
+            id="contributors"
+            name="contributors"
+            onkeypress="return isNumber(event)"
+            oninput="sanitizeInput(this)"
+            required
+          /><br /><br />
+
+          <label for="model-choice">Выберите модель:</label>
+
+          <select name="model-choice" class="choice-model__select">
+            <option value="random-forest" selected>Случайный лес</option>
+            <option value="gradient-boosting">Градиентный бустинг</option>
+            <option value="decision-tree">Деревья решений</option>
+          </select>
+          <br /><br />
+          <button class="get-data__button" type="submit">
+            <b>Узнать класс</b>
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

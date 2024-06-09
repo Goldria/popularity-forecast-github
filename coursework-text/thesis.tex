@@ -23,10 +23,10 @@
 \usepackage{graphicx}%Вставка картинок правильная
 \fxsetup{status=draft} % <====== add this line
 \usepackage{float}%"Плавающие" картинки
-
+\usepackage{caption}
+\captionsetup[figure]{name={Рисунок}}
 \usepackage{totcount} % Счетчики объектов (chapter, figure и~др.)
-\usepackage{russianplural}
-
+\usepackage{chngcntr}
 
 \usepackage{wrapfig}%Обтекание фигур (таблиц, картинок и прочего)
 \graphicspath{{noiseimages/}}
@@ -117,13 +117,14 @@
 \input{realization.tex}
 \input{testing.tex}
 \input{conclusion.tex}
-
 \newpage
 {\raggedright
 \phantomsection\addcontentsline{toc}{section}{\refname}
 \bibliographystyle{ugost2008}
 \bibliography{thesis}
 }
+
+\input{appendix.tex}
 % \printbibliography[env=gostbibliography, sorting=ntvy]
 
 \end{document}

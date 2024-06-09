@@ -62,7 +62,7 @@
 \titleformat{name=\section,numberless}[hang]{\bfseries\uppercase}{}{0pt}{\raggedright}
 
 \titleformat{\subsection}[hang]{\bfseries}{}{0pt}{\raggedright\thesubsection. }
-\titleformat{name=\subsection,numberless}[hang]{\bfseries}{}{0pt}{\hspace{1.25cm}\raggedright}
+\titleformat{name=\subsection,numberless}[hang]{\bfseries}{}{0pt}{\raggedright}
 
 \titleformat{\subsubsection}[hang]{\bfseries}{}{0pt}{\raggedright\thesubsubsection. }
 \titleformat{name=\subsubsection,numberless}[hang]{\bfseries}{}{0pt}{\raggedright}
@@ -86,7 +86,7 @@
 	\ifnum \c@tocdepth >\m@ne% if this depth should be in TOC
 		\setlength\@tempdima{2em}%
 		\begingroup
-			\parindent 0pt
+			\parindent 1.25cm
 			\rightskip \@pnumwidth plus 1fil% All lines skip right...
 			\parfillskip -\@pnumwidth% .. except the last one.
 			#1\nobreak\dotfill\nobreak #2\par
@@ -128,7 +128,8 @@
 \AtBeginDocument{
 %\renewcommand{\bfdefault}{b} % чтобы жирный шрифт не был таким уродски широким
 \renewcommand{\refname}{\uppercase{Литература}} % заголовок списка литературы
-\renewcommand{\tablename}{Табл.} % начало подписи к таблице
+\renewcommand{\tablename}{Таблица} % начало подписи к таблице
+\renewcommand{\figurename}{Рисунок} % начало подписи к таблице
 \renewcommand{\contentsname}{\uppercase{Оглавление}} % заголовок оглавления
 \renewcommand{\labelenumi}{\theenumi.} % нумерация float-ов
 \renewcommand{\labelenumii}{\theenumi.\theenumii.} % нумерация float-ов
@@ -142,13 +143,15 @@
 \captionsetup[figure]{
   justification=centering,
   %labelfont=bf,
-  labelsep=period
+  labelsep=endash
 }
 
-\captionsetup[table]{
+\captionsetup[table] {
   justification=raggedright,
-  labelsep=period,
+  labelsep=endash,
+  singlelinecheck=0,
 }
+    \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 \setlength{\abovecaptionskip}{0em}
 \makeatletter % сделать @ обычной буквой
@@ -204,6 +207,10 @@ fontsize=\small}
 
 % ---------- команда для вставки раздела без номера ----------
 \newcommand{\sectionnonumber}[1]{\section*{#1}\addcontentsline{toc}{section}{%\hspace{7.5mm}
+#1}}
+
+% ---------- команда для вставки подраздела без номера ----------
+\newcommand{\subsectionnonumber}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{%\hspace{7.5mm}
 #1}}
 
 % ---------- тупо рамочка ----------
